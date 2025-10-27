@@ -603,14 +603,106 @@
           return lightning;
         }
 
+        // var pipeCounter = 0;
+
+        // function addPipe() {
+        //   let currentPipeSpeed = -birdSpeed - Math.floor(score / 5) * 2;
+        //   let currentBirdGravity = birdGravity + Math.floor(score / 10) * 20;
+
+        //   if (pipeCounter === 0) {
+        //     var pipeHolePosition = game.rnd.between(600, 200 - pipeHole);
+        //     var upperPipe = new Pipe(
+        //       game,
+        //       400,
+        //       pipeHolePosition - 620,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(upperPipe);
+        //     pipeGroup.add(upperPipe);
+        //     var lowerPipe = new Pipe(
+        //       game,
+        //       400,
+        //       pipeHolePosition + pipeHole + 50,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(lowerPipe);
+        //     pipeGroup.add(lowerPipe);
+        //     pipeCounter++;
+        //   } else if (pipeCounter === 1) {
+        //     var pipeHolePosition1 = game.rnd.between(600, 200 - pipeHole);
+        //     var upperPipe1 = new Pipe(
+        //       game,
+        //       500,
+        //       pipeHolePosition1 - 620,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(upperPipe1);
+        //     pipeGroup.add(upperPipe1);
+        //     var lowerPipe1 = new Pipe(
+        //       game,
+        //       500,
+        //       pipeHolePosition1 + pipeHole + 50,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(lowerPipe1);
+        //     pipeGroup.add(lowerPipe1);
+
+        //     var pipeHolePosition2 = game.rnd.between(600, 200 - pipeHole);
+        //     var upperPipe2 = new Pipe(
+        //       game,
+        //       950,
+        //       pipeHolePosition2 - 620,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(upperPipe2);
+        //     pipeGroup.add(upperPipe2);
+        //     var lowerPipe2 = new Pipe(
+        //       game,
+        //       950,
+        //       pipeHolePosition2 + pipeHole + 50,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(lowerPipe2);
+        //     pipeGroup.add(lowerPipe2);
+        //     pipeCounter++;
+        //   } else {
+        //     var pipeHolePosition = game.rnd.between(600, 200 - pipeHole);
+        //     var upperPipe = new Pipe(
+        //       game,
+        //       1050 + (pipeCounter - 2) * 800,
+        //       pipeHolePosition - 620,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(upperPipe);
+        //     pipeGroup.add(upperPipe);
+        //     var lowerPipe = new Pipe(
+        //       game,
+        //       1050 + (pipeCounter - 2) * 800,
+        //       pipeHolePosition + pipeHole + 50,
+        //       currentPipeSpeed
+        //     );
+        //     game.add.existing(lowerPipe);
+        //     pipeGroup.add(lowerPipe);
+        //   }
+
+        //   bird.body.gravity.y = currentBirdGravity;
+        // }
+
         var pipeCounter = 0;
 
         function addPipe() {
-          let currentPipeSpeed = -birdSpeed - Math.floor(score / 5) * 2;
-          let currentBirdGravity = birdGravity + Math.floor(score / 10) * 20;
+          // 🎮 MEDIUM DIFFICULTY ADJUSTMENTS:
+          // 1. Slower speed increase (was /5*2, now /10*1.5)
+          let currentPipeSpeed = -birdSpeed - Math.floor(score / 10) * 1.5;
+
+          // 2. Much slower gravity increase (was /10*20, now /15*10)
+          let currentBirdGravity = birdGravity + Math.floor(score / 15) * 10;
+
+          // 3. Increased pipe hole size for easier passage
+          let adjustedPipeHole = pipeHole + 30; // Was 120, now 150
 
           if (pipeCounter === 0) {
-            var pipeHolePosition = game.rnd.between(600, 200 - pipeHole);
+            var pipeHolePosition = game.rnd.between(500, 250); // Better positioning
             var upperPipe = new Pipe(
               game,
               400,
@@ -622,17 +714,17 @@
             var lowerPipe = new Pipe(
               game,
               400,
-              pipeHolePosition + pipeHole + 50,
+              pipeHolePosition + adjustedPipeHole + 50,
               currentPipeSpeed
             );
             game.add.existing(lowerPipe);
             pipeGroup.add(lowerPipe);
             pipeCounter++;
           } else if (pipeCounter === 1) {
-            var pipeHolePosition1 = game.rnd.between(600, 200 - pipeHole);
+            var pipeHolePosition1 = game.rnd.between(500, 250);
             var upperPipe1 = new Pipe(
               game,
-              500,
+              600, // Increased spacing (was 500)
               pipeHolePosition1 - 620,
               currentPipeSpeed
             );
@@ -640,17 +732,17 @@
             pipeGroup.add(upperPipe1);
             var lowerPipe1 = new Pipe(
               game,
-              500,
-              pipeHolePosition1 + pipeHole + 50,
+              600,
+              pipeHolePosition1 + adjustedPipeHole + 50,
               currentPipeSpeed
             );
             game.add.existing(lowerPipe1);
             pipeGroup.add(lowerPipe1);
 
-            var pipeHolePosition2 = game.rnd.between(600, 200 - pipeHole);
+            var pipeHolePosition2 = game.rnd.between(500, 250);
             var upperPipe2 = new Pipe(
               game,
-              950,
+              1100, // Increased spacing (was 950)
               pipeHolePosition2 - 620,
               currentPipeSpeed
             );
@@ -658,18 +750,18 @@
             pipeGroup.add(upperPipe2);
             var lowerPipe2 = new Pipe(
               game,
-              950,
-              pipeHolePosition2 + pipeHole + 50,
+              1100,
+              pipeHolePosition2 + adjustedPipeHole + 50,
               currentPipeSpeed
             );
             game.add.existing(lowerPipe2);
             pipeGroup.add(lowerPipe2);
             pipeCounter++;
           } else {
-            var pipeHolePosition = game.rnd.between(600, 200 - pipeHole);
+            var pipeHolePosition = game.rnd.between(500, 250);
             var upperPipe = new Pipe(
               game,
-              1050 + (pipeCounter - 2) * 800,
+              1300 + (pipeCounter - 2) * 450, // Better spacing (was 1050 + *800)
               pipeHolePosition - 620,
               currentPipeSpeed
             );
@@ -677,8 +769,8 @@
             pipeGroup.add(upperPipe);
             var lowerPipe = new Pipe(
               game,
-              1050 + (pipeCounter - 2) * 800,
-              pipeHolePosition + pipeHole + 50,
+              1300 + (pipeCounter - 2) * 450,
+              pipeHolePosition + adjustedPipeHole + 50,
               currentPipeSpeed
             );
             game.add.existing(lowerPipe);
