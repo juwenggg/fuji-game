@@ -590,6 +590,9 @@
           bolt.style.animation = "lightning 0.1s linear infinite";
           lightning.appendChild(bolt);
 
+          let thunderSound = new Audio("assets/Sounds/electricity.mp3");
+          thunderSound.play();
+
           let style = document.createElement("style");
           style.textContent = `@keyframes lightning { 0% { box-shadow: 0 0 5px white; } 50% { box-shadow: 0 0 20px white; } 100% { box-shadow: 0 0 5px white; } }`;
           document.head.appendChild(style);
@@ -598,6 +601,8 @@
           setTimeout(() => {
             document.body.removeChild(lightning);
             document.head.removeChild(style);
+            thunderSound.pause();
+            thunderSound.currentTime = 0;
           }, 1000);
 
           return lightning;
@@ -997,3 +1002,4 @@
     </script>
   </body>
 </html>
+
